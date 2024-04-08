@@ -1,7 +1,7 @@
 export const Card = () => {
     return (
-        <div>
-            
+        <div className="w-56 h-36 bg-black rounded">
+
         </div>
     )
 }
