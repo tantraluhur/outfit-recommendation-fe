@@ -1,4 +1,4 @@
-import {Navbar, Card, Dropdown} from "@/components"
+import {Navbar, HomeSection} from "@/components"
 
 import { Inter } from 'next/font/google'
  
@@ -8,14 +8,8 @@ export default function Home() {
   return (
     <div className={inter.className}>
       <Navbar />
-      <div className="m-4">
-        <div className="flex">
-          <div className="text-2xl font-normal">
-            Clothes
-          </div>
-          <Dropdown />
-        </div>
-        <Card />
+      <div className="m-10">
+        <HomeSection />
       </div>
     </div>
   );
