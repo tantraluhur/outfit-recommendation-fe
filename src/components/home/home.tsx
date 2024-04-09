@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react"
 
 import { Card, Dropdown } from "./components"
-import { LoadingSpinner } from "../commons"
-import { DatasetResponse, ImageResponse } from "./types"
-import { getAllImage } from "./services/dataset"
+import { DatasetResponse } from "./types"
 
 export const HomeSection = () => {
     const [dataset, setDataset] = useState<DatasetResponse[]>([])
