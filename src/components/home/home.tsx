@@ -9,6 +9,7 @@ export const HomeSection = () => {
     const [dataset, setDataset] = useState<DatasetResponse[]>([])
     const [currentValue, setCurrentValue] = useState<string>('')
     const [datasetId, setDatasetId] = useState<number | null>(null)
+    const [totaImage, setTotalImage] = useState<number>(0)
 
     return (
         <div>
@@ -18,9 +19,10 @@ export const HomeSection = () => {
             currentValue={currentValue}
             setCurrentValue={setCurrentValue}
             setDatasetId={setDatasetId}
+            setTotalImage={setTotalImage}
             />
             <div className="flex flex-wrap gap-16">
-                { datasetId && <Card datasetId={datasetId}/>}
+                { datasetId && <Card totalImage={totaImage} datasetId={datasetId}/>}
             </div>
         </div>
     )

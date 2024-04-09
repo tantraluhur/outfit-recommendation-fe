@@ -3,7 +3,7 @@ import { getAllDataset } from '@/components/home/services';
 import { DropdownProps } from '@/components/home/types';
 import { LoadingSpinner } from '@/components/commons';
 
-export const Dropdown: React.FC<DropdownProps> = ({ currentValue, setCurrentValue, dataset, setDataset, setDatasetId }) => {
+export const Dropdown: React.FC<DropdownProps> = ({ currentValue, setCurrentValue, dataset, setDataset, setDatasetId, setTotalImage }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(true)
     const dropdownRef = useRef<HTMLDivElement>(null);
@@ -11,15 +11,18 @@ export const Dropdown: React.FC<DropdownProps> = ({ currentValue, setCurrentValu
     const changeCurrentValue = (event: any) => {
         const id = event.currentTarget.id;
         const value = event.currentTarget.textContent;
+        const totalImage = event.currentTarget.getAttribute('total-image');
+
         if (value || id) {
             setCurrentValue(value);
-          setDatasetId(id)
-          setIsOpen(false);
+            setDatasetId(id);
+            setTotalImage(totalImage)
+            setIsOpen(false);
         }
     }
     
     useEffect(() => {
-        getAllDataset(setDataset, setCurrentValue, setDatasetId).then((isValid) => {
+        getAllDataset(setDataset, setCurrentValue, setDatasetId, setTotalImage).then((isValid) => {
             if(isValid){
                 setIsLoading(false)
             }
@@ -66,7 +69,11 @@ export const Dropdown: React.FC<DropdownProps> = ({ currentValue, setCurrentValu
                         <ul className="block">
                             {dataset.map((item:any) => {
                                 return (
-                                    <li><a onClick={changeCurrentValue} id={item.id} className="px-4 py-2 block hover:bg-[#edf7f9]">{item.name}</a></li>
+                                    <li key={item.id}><a onClick={changeCurrentValue}
+                                     key={item.id} 
+                                     id={item.id} 
+                                     total-image={item.total_image}
+                                     className="px-4 py-2 block hover:bg-[#edf7f9]">{item.name}</a></li>
                                 )
                             })}
                         </ul>
