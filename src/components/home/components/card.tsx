@@ -4,7 +4,7 @@ import { getAllImage } from "@/components/home/services";
 import { LoadingDot } from "@/components/commons";
 
 
-export const Card : React.FC<CardProps> = ( {datasetId, totalImage} ) => {
+export const Card : React.FC<CardProps> = ( {datasetId, datasetDetail} ) => {
     const [imageData, setImageData] = useState<ImageResponse[]>([])
     const [isLoading, setIsLoading] = useState(true)
 
@@ -28,7 +28,30 @@ export const Card : React.FC<CardProps> = ( {datasetId, totalImage} ) => {
     return (
         <div className="grid gap-2">
             <div className="text-lg">
-                Total Image: {totalImage}
+                <table>
+                    <tbody>
+                        <tr>
+                            <td> Name </td>
+                            <td> : {datasetDetail.name} </td>
+                        </tr>
+                        <tr>
+                            <td> Generation </td>
+                            <td> : {datasetDetail.generation} </td>
+                        </tr>
+                        <tr>
+                            <td> Season </td>
+                            <td> : {datasetDetail.season} </td>
+                        </tr>
+                        <tr>
+                            <td> Source Type </td>
+                            <td> : {datasetDetail.source_type} </td>
+                        </tr>
+                        <tr>
+                            <td> Total Image </td>
+                            <td> : {datasetDetail.total_image} </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             <div className="flex flex-wrap gap-16">
                 {imageData && imageData.map((item) => {

@@ -25,10 +25,10 @@ export type DropdownProps = {
     dataset: DatasetResponse[];
     setDataset: React.Dispatch<React.SetStateAction<DatasetResponse[]>>;
     setDatasetId: React.Dispatch<React.SetStateAction<number | null>>;
-    setTotalImage: React.Dispatch<React.SetStateAction<number>>;
+    setDetailDataset: React.Dispatch<React.SetStateAction<DatasetResponse | undefined>>;
 };
 
 export type CardProps = {
     datasetId: number
-    totalImage: number
+    datasetDetail: DatasetResponse
 }

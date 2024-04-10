@@ -4,14 +4,14 @@ import { DatasetResponse, ImageResponse } from "../types"
 export const getAllDataset = async (setDataset: React.Dispatch<React.SetStateAction<DatasetResponse[]>>, 
     setCurrentValue: React.Dispatch<React.SetStateAction<string>>, 
     setDatasetId: React.Dispatch<React.SetStateAction<number | null>>,
-    setTotalImage: React.Dispatch<React.SetStateAction<number>>) => {
+    setDetailDataset: React.Dispatch<React.SetStateAction<DatasetResponse | undefined>>) => {
     try {
         const response = await axios.get("https://outfit-recommendation.vercel.app/api/v1/dataset/")
         const data = response.data.data
         if(data){
             setCurrentValue(data[0].name)
             setDatasetId(data[0].id)
-            setTotalImage(data[0].total_image)
+            setDetailDataset(data[0])
             setDataset(data)
         }
         return true
