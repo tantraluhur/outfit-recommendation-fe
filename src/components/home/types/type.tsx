@@ -32,3 +32,22 @@ export type CardProps = {
     datasetId: number
     datasetDetail: DatasetResponse
 }
+
+export type ModalProps = {
+    isOpen: boolean
+    imageId: number | null
+    setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export type SegmentationColor = {
+    rgbCode: string,
+    percentage: number,
+    positionCategory: string,
+}
+
+export type SegmentationResponse = {
+    segmentationId: number,
+    part: string,
+    size: number,
+    segmentationColour: SegmentationColor[]
+}

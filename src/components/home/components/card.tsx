@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import { CardProps, ImageResponse } from "@/components/home/types";
 import { getAllImage } from "@/components/home/services";
 import { LoadingDot } from "@/components/commons";
-
+import { Modal } from "@/components/home/components";
 
 export const Card : React.FC<CardProps> = ( {datasetId, datasetDetail} ) => {
     const [imageData, setImageData] = useState<ImageResponse[]>([])
     const [isLoading, setIsLoading] = useState(true)
+    const [isOpen, setIsOpen] = useState<boolean>(false)
+    const [imageId, setImageId] = useState<number | null>(null)
 
     useEffect(() => {
         setIsLoading(true)
@@ -19,6 +21,12 @@ export const Card : React.FC<CardProps> = ( {datasetId, datasetDetail} ) => {
         }
     }, [datasetId])
 
+    const handleClick = (imageId: number) => {
+        console.log(imageId)
+        setImageId(imageId)
+        setIsOpen(true)
+    }
+
     if(isLoading){
         return (
             <LoadingDot />
@@ -27,6 +35,11 @@ export const Card : React.FC<CardProps> = ( {datasetId, datasetDetail} ) => {
 
     return (
         <div className="grid gap-2">
+            <Modal
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            imageId={imageId}
+            />
             <div className="text-lg">
                 <table>
                     <tbody>
@@ -56,7 +69,9 @@ export const Card : React.FC<CardProps> = ( {datasetId, datasetDetail} ) => {
             <div className="flex flex-wrap gap-16">
                 {imageData && imageData.map((item) => {
                     return (
-                        <img src={item.image} key={item.id} className="card-image object-cover w-56 h-36"/>
+                        <button key={item.id} onClick={()=> handleClick(item.id)}>
+                            <img src={item.image} key={item.id} className="card-image object-cover w-56 h-36"/>
+                        </button>
                     )
                 })}
             </div>

@@ -1,5 +1,5 @@
 import axios from "axios"
-import { DatasetResponse, ImageResponse } from "../types"
+import { DatasetResponse, ImageResponse, SegmentationResponse } from "../types"
 
 export const getAllDataset = async (setDataset: React.Dispatch<React.SetStateAction<DatasetResponse[]>>, 
     setCurrentValue: React.Dispatch<React.SetStateAction<string>>, 
@@ -27,6 +27,37 @@ export const getAllImage = async (datasedId: number, setImageData: React.Dispatc
         const data = response.data.data
         if(data){
             setImageData(data)
+        }
+        return true
+    } catch (error: any) {
+        const message = error.response?.data?.message || error.response?.data?.detail || "An unexpected error occurred.";
+        return false
+    }
+}
+
+export const getImageDetail = async (imageId: number | null, setImageDetail: React.Dispatch<React.SetStateAction<ImageResponse | undefined>>) => {
+    try {
+        const response = await axios.get(`https://outfit-recommendation.vercel.app/api/v1/clothes/detail/${imageId}/`)
+        const data = response.data.data
+        if(data){
+            setImageDetail(data)
+        }
+        return true
+    } catch (error: any) {
+        const message = error.response?.data?.message || error.response?.data?.detail || "An unexpected error occurred.";
+        return false
+    } 
+}
+
+export const getSegmentation = async (imageId: number | null, 
+                                      setSegmentation: React.Dispatch<React.SetStateAction<SegmentationResponse[] | undefined>>,
+                                      setCurrenValue: React.Dispatch<React.SetStateAction<string>> ) => {
+    try {
+        const response = await axios.get(`https://outfit-recommendation.vercel.app/api/v1/clothes/segmentation/${imageId}/`)
+        const data = response.data.data
+        if(data){
+            setSegmentation(data)
+            setCurrenValue(data[0].part)
         }
         return true
     } catch (error: any) {

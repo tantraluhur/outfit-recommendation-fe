@@ -47,16 +47,16 @@ export const Dropdown: React.FC<DropdownProps> = ({ currentValue, setCurrentValu
     }
 
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between gap-4">
         <div className="text-3xl underline decoration-[1.19px] underline-offset-8 decoration-gray-300 mb-8">
             Clothes
         </div>
         <div className="relative" ref={dropdownRef}>
-            <div className='w-auto min-w-52'>
+            <div className='w-auto'>
                 <div className="absolute -top-2 left-2 bg-white px-1 text-xs font-medium text-[#409db2]">Dataset</div>
                 <button
                     onClick={() => setIsOpen(!isOpen)}
-                    className="py-2 px-4 border-[3px] border-[#1c8aa3] rounded shadow"
+                    className="py-2 px-4 border-[3px] border-[#1c8aa3] rounded shadow truncate"
                 >
                     {currentValue}
                     <span className={`transform ${isOpen ? 'rotate-180' : ''} inline-block ml-2 text-xs text-[#757575]`}>
@@ -72,7 +72,7 @@ export const Dropdown: React.FC<DropdownProps> = ({ currentValue, setCurrentValu
                                      key={item.id} 
                                      id={item.id} 
                                      dataset-detail={JSON.stringify(item)}
-                                     className="px-4 py-2 block hover:bg-[#edf7f9]">{item.name}</a></li>
+                                     className="px-4 py-2 block hover:bg-[#edf7f9] truncate">{item.name}</a></li>
                                 )
                             })}
                         </ul>
