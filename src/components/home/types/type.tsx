@@ -39,15 +39,24 @@ export type ModalProps = {
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+export type PercentChartProps = {
+    percent: number
+    hexColor: string
+}
+
+export type ColorWheelProps = {
+    baseColor: string
+}
+
 export type SegmentationColor = {
-    rgbCode: string,
+    rgb_code: string,
     percentage: number,
-    positionCategory: string,
+    position_category: string,
 }
 
 export type SegmentationResponse = {
-    segmentationId: number,
+    id: number,
     part: string,
     size: number,
-    segmentationColour: SegmentationColor[]
+    segmantation_colour: SegmentationColor[]
 }

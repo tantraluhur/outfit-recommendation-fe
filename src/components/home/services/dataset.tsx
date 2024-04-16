@@ -50,14 +50,16 @@ export const getImageDetail = async (imageId: number | null, setImageDetail: Rea
 }
 
 export const getSegmentation = async (imageId: number | null, 
-                                      setSegmentation: React.Dispatch<React.SetStateAction<SegmentationResponse[] | undefined>>,
-                                      setCurrenValue: React.Dispatch<React.SetStateAction<string>> ) => {
+                                      setSegmentation: React.Dispatch<React.SetStateAction<SegmentationResponse[]>>,
+                                      setCurrenValue: React.Dispatch<React.SetStateAction<string>> ,
+                                        setIndexCurrentValue: React.Dispatch<React.SetStateAction<number>>) => {
     try {
         const response = await axios.get(`https://outfit-recommendation.vercel.app/api/v1/clothes/segmentation/${imageId}/`)
         const data = response.data.data
         if(data){
             setSegmentation(data)
             setCurrenValue(data[0].part)
+            setIndexCurrentValue(0)
         }
         return true
     } catch (error: any) {

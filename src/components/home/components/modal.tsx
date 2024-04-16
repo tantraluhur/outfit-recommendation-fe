@@ -2,19 +2,21 @@ import { ImageResponse, ModalProps, SegmentationResponse } from "@/components/ho
 import { useEffect, useRef, useState } from "react";
 import { getImageDetail, getSegmentation } from "../services";
 import { LoadingSpinner } from "@/components/commons";
+import { ColorWheel, PercentChart } from "@/components/home/components";
 
 export const Modal : React.FC<ModalProps> = ( {isOpen, setIsOpen, imageId} ) => {
     const [imageDetail, setImageDetail] = useState<ImageResponse | undefined>()
-    const [segmentation, setSegmentation] = useState<SegmentationResponse[] | undefined>([])
+    const [segmentation, setSegmentation] = useState<SegmentationResponse[]>([])
     const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false)
     const [isLoading, setIsLoading] = useState<boolean>(true)
     const [currentValue, setCurrentValue] = useState<string>("")
+    const [indexCurrentValue, setIndexCurrentValue] = useState<number>(0)
     const modalRef = useRef<HTMLDivElement>(null)
     const dropdownRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
         if(isOpen){
-            Promise.all([getImageDetail(imageId, setImageDetail), getSegmentation(imageId, setSegmentation, setCurrentValue)]).then(() => {
+            Promise.all([getImageDetail(imageId, setImageDetail), getSegmentation(imageId, setSegmentation, setCurrentValue, setIndexCurrentValue)]).then(() => {
                 setIsLoading(false)
             })  
         }
@@ -39,8 +41,10 @@ export const Modal : React.FC<ModalProps> = ( {isOpen, setIsOpen, imageId} ) => 
 
     const changeCurrentValue = (event: any) => {
         const value = event.currentTarget.textContent;
+        const index = event.currentTarget.getAttribute("index-value")
         if (value) {
             setCurrentValue(value);
+            setIndexCurrentValue(index)
             setIsDropdownOpen(false);
         }
     }
@@ -95,7 +99,10 @@ export const Modal : React.FC<ModalProps> = ( {isOpen, setIsOpen, imageId} ) => 
                             Segmentation
                         </div>
                         <img src={imageDetail?.image} className="mb-2"/>
-                        <div className="relative" ref={dropdownRef}>
+                        <div className="font-bold">
+                            Part:
+                        </div>
+                        <div className="relative mb-2" ref={dropdownRef}>
                             <div className='w-auto'>
                                     <button
                                     onClick={() => setIsDropdownOpen(!isDropdownOpen)}
@@ -109,11 +116,12 @@ export const Modal : React.FC<ModalProps> = ( {isOpen, setIsOpen, imageId} ) => 
                                 {isDropdownOpen && (
                                     <div className="dropdown absolute mt-1 rounded-b bg-white">
                                         <ul className="block">
-                                            {segmentation?.map((item:any    ) => {
+                                            {segmentation?.map((item:any,index:number) => {
                                                 return (
                                                     <li key={item.id}>
                                                         <a onClick={changeCurrentValue}
-                                                        key={item.id} 
+                                                        key={item.id}
+                                                        index-value={index}
                                                         className="px-4 py-2 block hover:bg-[#edf7f9]">{item.part}
                                                         </a>
                                                     </li>
@@ -123,6 +131,30 @@ export const Modal : React.FC<ModalProps> = ( {isOpen, setIsOpen, imageId} ) => 
                                     </div>
                                 )}
                             </div>
+                        </div>
+                        <div className="grid gap-8">
+                            <div>
+                                <b>Size:</b> {segmentation?.length? segmentation[indexCurrentValue].size: ""}
+                            </div>
+                            {
+                                segmentation?.length? segmentation[indexCurrentValue].segmantation_colour.map((item) => {
+                                    return (
+                                        <div>
+                                            <b>Position Category</b>: {item.position_category} <br/>
+                                            <b>Percentage (in %)</b>:
+                                            <PercentChart 
+                                            percent={item.percentage}
+                                            hexColor={item.rgb_code}
+                                            />
+                                            <b>Colour Definition</b>:
+                                            <ColorWheel 
+                                            baseColor={item.rgb_code}
+                                            />
+
+                                        </div>
+                                    )
+                                }) : ""
+                            }
                         </div>
                     </div>
                 </div>
