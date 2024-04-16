@@ -139,7 +139,7 @@ export const Modal : React.FC<ModalProps> = ( {isOpen, setIsOpen, imageId} ) => 
                             {
                                 segmentation?.length? segmentation[indexCurrentValue].segmantation_colour.map((item) => {
                                     return (
-                                        <div>
+                                        <div key={item.percentage}>
                                             <b>Position Category</b>: {item.position_category} <br/>
                                             <b>Percentage (in %)</b>:
                                             <PercentChart 
