@@ -6,7 +6,7 @@ export const getAllDataset = async (setDataset: React.Dispatch<React.SetStateAct
     setDatasetId: React.Dispatch<React.SetStateAction<number | null>>,
     setDetailDataset: React.Dispatch<React.SetStateAction<DatasetResponse | undefined>>) => {
     try {
-        const response = await axios.get("https://outfit-recommendation.vercel.app/api/v1/dataset/")
+        const response = await axios.get("http://outfit-recs-421406.et.r.appspot.com/api/v1/dataset/")
         const data = response.data.data
         if(data){
             setCurrentValue(data[0].name)
@@ -23,7 +23,7 @@ export const getAllDataset = async (setDataset: React.Dispatch<React.SetStateAct
 
 export const getAllImage = async (datasedId: number, setImageData: React.Dispatch<React.SetStateAction<ImageResponse[]>>) => {
     try {
-        const response = await axios.get(`https://outfit-recommendation.vercel.app/api/v1/clothes/${datasedId}/`)
+        const response = await axios.get(`http://outfit-recs-421406.et.r.appspot.com/api/v1/clothes/${datasedId}/`)
         const data = response.data.data
         if(data){
             setImageData(data)
@@ -37,7 +37,7 @@ export const getAllImage = async (datasedId: number, setImageData: React.Dispatc
 
 export const getImageDetail = async (imageId: number | null, setImageDetail: React.Dispatch<React.SetStateAction<ImageResponse | undefined>>) => {
     try {
-        const response = await axios.get(`https://outfit-recommendation.vercel.app/api/v1/clothes/detail/${imageId}/`)
+        const response = await axios.get(`http://outfit-recs-421406.et.r.appspot.com/api/v1/clothes/detail/${imageId}/`)
         const data = response.data.data
         if(data){
             setImageDetail(data)
@@ -54,7 +54,7 @@ export const getSegmentation = async (imageId: number | null,
                                       setCurrenValue: React.Dispatch<React.SetStateAction<string>> ,
                                         setIndexCurrentValue: React.Dispatch<React.SetStateAction<number>>) => {
     try {
-        const response = await axios.get(`https://outfit-recommendation.vercel.app/api/v1/clothes/segmentation/${imageId}/`)
+        const response = await axios.get(`http://outfit-recs-421406.et.r.appspot.com/api/v1/clothes/segmentation/${imageId}/`)
         const data = response.data.data
         if(data){
             setSegmentation(data)
