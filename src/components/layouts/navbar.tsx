@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 export const Navbar = () => {
     return (
         <div className="navbar w-full h-16 bg-[#373737] shadow-2xl">
@@ -5,12 +7,12 @@ export const Navbar = () => {
                 <button className="font-semibold text-[1.5rem]">
                     F T P
                 </button>
-                <a href="/clothes">
+                <Link href="/clothes">
                     CLOTHES
-                </a>
-                <a href="/outfits">
+                </Link>
+                <Link href="/outfits">
                     RECOMMENDED OUTFITS
-                </a>
+                </Link>
             </div>
         </div>
     )
