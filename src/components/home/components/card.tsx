@@ -69,7 +69,7 @@ export const Card : React.FC<CardProps> = ( {datasetId, datasetDetail} ) => {
             <div className="flex flex-wrap gap-16">
                 {imageData && imageData.map((item) => {
                     return (
-                        <button key={item.id} onClick={()=> handleClick(item.id)}>
+                        <button key={item.id} onClick={()=> handleClick(item.id)} className="hover:scale-110 transition-all	">
                             <img src={item.image} key={item.id} className="card-image object-cover w-56 h-36"/>
                         </button>
                     )
