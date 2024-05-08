@@ -5,12 +5,12 @@ export const Navbar = () => {
                 <button className="font-semibold text-[1.5rem]">
                     F T P
                 </button>
-                <button>
+                <a href="/clothes">
                     CLOTHES
-                </button>
-                <button>
+                </a>
+                <a href="/outfits">
                     RECOMMENDED OUTFITS
-                </button>
+                </a>
             </div>
         </div>
     )
