@@ -20,6 +20,7 @@ export const ItemList: React.FC<ItemListProps> = ( {data, displayedNumber} ) => 
                         hexCode={item}
                         image={data.rec_data[item]["image"]}
                         colorName={data.rec_data[item]["color_name"]}
+                        percentage={data.rec_data[item]["percentage"]}
                         />
                     )
                 })
