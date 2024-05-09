@@ -3,13 +3,23 @@ import  Wheel from "@uiw/react-color-wheel";
 import { ColorWheelProps } from '../types';
   
 
-export const ColorWheel: React.FC<ColorWheelProps> = ({ baseColor }) => {
+export const ColorWheel: React.FC<ColorWheelProps> = ({ baseColor, width, height, isAbsolute }) => {
+
+  if(isAbsolute) {
+    return (
+      <Wheel
+      color={baseColor}
+      width={width}
+      height={height}
+      style={{position: 'absolute'}}
+      />  
+  );  }
   
   return (
         <Wheel
         color={baseColor}
-        width={200}
-        height={200}
+        width={width}
+        height={height}
         />  
     );
 };

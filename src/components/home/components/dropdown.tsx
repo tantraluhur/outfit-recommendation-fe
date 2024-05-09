@@ -40,17 +40,7 @@ export const Dropdown: React.FC<DropdownProps> = ({ currentValue, setCurrentValu
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, [dropdownRef]);
 
-    if(isLoading){
-        return (
-            <LoadingSpinner />
-        )
-    }
-
   return (
-    <div className="flex justify-between gap-4">
-        <div className="text-3xl underline decoration-[1.19px] underline-offset-8 decoration-gray-300 mb-8">
-            Clothes
-        </div>
         <div className="relative" ref={dropdownRef}>
             <div className='w-auto'>
                 <div className="absolute -top-2 left-2 bg-white px-1 text-xs font-medium text-[#409db2]">Dataset</div>
@@ -66,20 +56,21 @@ export const Dropdown: React.FC<DropdownProps> = ({ currentValue, setCurrentValu
                 {isOpen && (
                     <div className="dropdown absolute mt-1 rounded-b w-full bg-white">
                         <ul className="block">
-                            {dataset.map((item:any) => {
-                                return (
-                                    <li key={item.id}><a onClick={changeCurrentValue}
-                                     key={item.id} 
-                                     id={item.id} 
-                                     dataset-detail={JSON.stringify(item)}
-                                     className="px-4 py-2 block hover:bg-[#edf7f9] truncate">{item.name}</a></li>
-                                )
-                            })}
+                            <button>
+                                {dataset.map((item:any) => {
+                                    return (
+                                        <li key={item.id}><a onClick={changeCurrentValue}
+                                        key={item.id} 
+                                        id={item.id} 
+                                        dataset-detail={JSON.stringify(item)}
+                                        className="px-4 py-2 block hover:bg-[#edf7f9] truncate">{item.name}</a></li>
+                                    )
+                                })}
+                            </button>
                         </ul>
                     </div>
                 )}
             </div>
         </div>
-    </div>
   );
 }

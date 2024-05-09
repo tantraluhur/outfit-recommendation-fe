@@ -149,6 +149,8 @@ export const Modal : React.FC<ModalProps> = ( {isOpen, setIsOpen, imageId} ) => 
                                             <b>Colour Definition</b>:
                                             <ColorWheel 
                                             baseColor={item.rgb_code}
+                                            width={200}
+                                            height={200}
                                             />
 
                                         </div>

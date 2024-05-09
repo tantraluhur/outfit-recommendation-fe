@@ -1,4 +1,3 @@
-import {Navbar, HomeSection} from "@/components"
 
 import { Inter } from 'next/font/google'
  

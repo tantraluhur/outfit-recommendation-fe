@@ -46,6 +46,9 @@ export type PercentChartProps = {
 
 export type ColorWheelProps = {
     baseColor: string
+    width: number
+    height: number
+    isAbsolute?: boolean
 }
 
 export type SegmentationColor = {

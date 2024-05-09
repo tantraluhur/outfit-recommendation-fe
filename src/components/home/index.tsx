@@ -1,1 +1,3 @@
-export * from "./home"
+export * from "./components"
+export * from "./services"
+export * from "./types"
