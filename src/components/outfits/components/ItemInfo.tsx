@@ -8,9 +8,10 @@ type ItemInfoProps = {
     hexCode: string
     colorName: string
     percentage: string
+    segmentation: string
 }
 
-export const ItemInfo: React.FC<ItemInfoProps> = ( { index, image, hexCode, colorName, percentage } ) => {
+export const ItemInfo: React.FC<ItemInfoProps> = ( { index, image, hexCode, colorName, percentage, segmentation } ) => {
     const boxStyle = {
         backgroundColor: hexCode,
     };
@@ -43,6 +44,10 @@ export const ItemInfo: React.FC<ItemInfoProps> = ( { index, image, hexCode, colo
             <hr className="h-px my-4 bg-gray-200 border-0 dark:bg-gray-300" />
             <div>
                 Percentage: {percentage}
+            </div>
+            <hr className="h-px my-4 bg-gray-200 border-0 dark:bg-gray-300" />
+            <div>
+                Segmentation: {segmentation}
             </div>
         </div>
     )

@@ -64,7 +64,7 @@ export const HeaderSection: React.FC<HeaderSectionProps>  = ( {color, displayedN
                             <MenuItem value={20}>20</MenuItem>
                         </Select>
                     </FormControl>
-                    <div className="flex flex-wrap gap-4">
+                    <div className="grid grid-cols-5 gap-y-5">
                         {
                             color?.map((item, index) => {
                                 if(index <= displayedNumber-1)
