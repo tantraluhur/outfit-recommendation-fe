@@ -26,7 +26,7 @@ export const ItemInfo: React.FC<ItemInfoProps> = ( { index, image, hexCode, colo
             <Carousel 
             imageList={image}
             />
-            <div className="rounded-lg  w-full flex justify-center items-center p-5" style={boxStyle}>
+            <div className="rounded-lg  w-full flex justify-center items-center p-5">
                 <ColorWheel 
                 baseColor={hexCode}
                 width={100}

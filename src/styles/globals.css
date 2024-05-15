@@ -37,11 +37,5 @@ body {
   padding: 10px;
 }
 
-.color-wheel {
-  width: 200px;
-  height: 200px;
-  background-image: conic-gradient(red, yellow, lime, aqua, blue, magenta, red);
-  border-radius: 50%;
-}
 
 
